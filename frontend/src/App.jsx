@@ -1,16 +1,54 @@
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer"
+import Footer from "./Components/Footer/Footer";
 
-import { BrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import MainPage from "./Page/MainPage/MainPage";
+import About from "./Page/About/About";
+import Contact from "./Page/Contact/Contact";
+import Products from "./Page/Products/Products";
+import Resources from "./Page/Resources/Resources";
+
+function Layout() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
+}
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <MainPage />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/Resources",
+        element: <Resources />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Navbar />
-      <Footer />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
