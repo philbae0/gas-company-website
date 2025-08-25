@@ -4,10 +4,11 @@ import { HiMenu, HiX } from "react-icons/hi";
 
 const menuItems = [
   { path: "/", label: "홈" },
-  { path: "/about", label: "회사소개" },
-  { path: "/products", label: "제품안내" },
-  { path: "/contact", label: "문의하기" },
-  { path: "/resources", label: "자료실" },
+  { path: "/about", label: "회사 정보" },
+  { path: "/leadership", label: "임원 소개" },
+  { path: "/board", label: "업무 게시판" },
+  { path: "/services", label: "제공 기술" },
+  { path: "/contact", label: "문의하기" }
 ];
 
 const MenuItem = ({ path, label, onClick }) => (
@@ -21,18 +22,18 @@ const MenuItem = ({ path, label, onClick }) => (
     </Link>
   </li>
 );
-const Navbar = () => {
+
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState("ko");
+  const [language, setLanguage] = useState('ko');
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-white text-black p-4 shadow-lg z-50">
+
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl lg:text-2xl font-bold lg:ml-12 lg:mr-8">
-          <a href="/">CSG Korea</a>
-        </h1>
+        <h1 className="text-xl lg:text-2xl font-bold lg:ml-12 lg:mr-8"><Link to="/">ABC Company</Link></h1>
 
         <div className="hidden lg:flex flex-1 justify-center">
           <ul className="flex gap-8 text-lg">
@@ -42,13 +43,13 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <select
+        <select 
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
-          className="hidden lg:block px-3 ml-8 border rounded-md bg-white hover:border-blue-500 transition duration-300"
+          className="hidden lg:block px-3 py-1 ml-8 border rounded-md bg-white hover:border-blue-500 transition duration-300"
         >
           <option value="ko">한국어</option>
-          <option value="en">영어</option>
+          <option value="en">English</option>
         </select>
 
         <button
@@ -61,7 +62,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white text-black transfrom transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 right-0 h-full w-64 bg-white text-black transform transition-transform duration-300 ease-in-out z-50 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } lg:hidden`}
       >
@@ -80,18 +81,18 @@ const Navbar = () => {
                 {...item}
                 onClick={() => {
                   setIsOpen(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               />
             ))}
           </ul>
-          <select
+          <select 
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             className="mt-6 w-full px-3 py-1 border rounded-md bg-white hover:border-blue-500 transition duration-300"
           >
             <option value="ko">한국어</option>
-            <option value="en">영어</option>
+            <option value="en">English</option>
           </select>
         </div>
       </div>
@@ -99,4 +100,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavBar;
